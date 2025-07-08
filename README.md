@@ -24,7 +24,8 @@ A web application for creating and managing LLC operating agreements with an eas
 
 1. Clone the repository:
 ```bash
-cd opag-builder
+git clone https://github.com/ahamawy/opagbuilder.git
+cd opagbuilder
 ```
 
 2. Install backend dependencies:
@@ -80,7 +81,7 @@ For best results, the template should include placeholders that match the app's 
 ## Project Structure
 
 ```
-opag-builder/
+opagbuilder/
 ├── frontend/              # React TypeScript app
 │   ├── src/
 │   │   ├── components/   # Reusable UI components
