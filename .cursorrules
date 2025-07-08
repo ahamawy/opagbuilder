@@ -1,0 +1,111 @@
+# Operating Agreement Builder - Cursor Rules
+
+## Project Overview
+This is a full-stack web application for creating and managing LLC operating agreements with Word document export functionality.
+
+## Tech Stack
+- Frontend: React 18, TypeScript, Material-UI 5, React Router 6
+- Backend: Python 3.8+, Flask, SQLAlchemy, python-docx
+- Database: SQLite (development), PostgreSQL (production)
+- Deployment: Netlify (frontend), Heroku/Railway (backend)
+
+## Code Style Guidelines
+
+### TypeScript/React
+- Use functional components with hooks
+- Prefer TypeScript interfaces over types
+- Use proper typing for all props and state
+- Follow React best practices for performance (useMemo, useCallback)
+- Component files should be named in PascalCase
+- Use Material-UI components consistently
+
+### Python
+- Follow PEP 8 style guide
+- Use type hints where applicable
+- Keep functions small and focused
+- Use descriptive variable names
+- Document complex logic with comments
+
+## Project Structure
+```
+opag-builder/
+├── frontend/                 # React app
+│   ├── src/
+│   │   ├── components/      # Reusable UI components
+│   │   ├── pages/          # Page-level components
+│   │   ├── services/       # API service layer
+│   │   └── types/          # TypeScript type definitions
+│   └── build/              # Production build
+├── backend/                 # Flask API
+│   ├── models.py           # SQLAlchemy models
+│   ├── services/           # Business logic
+│   └── templates/          # Word document templates
+└── templates/              # Word templates directory
+```
+
+## Key Features to Maintain
+1. Multi-step form wizard for agreement creation
+2. Dynamic member management with class types (A, B, C)
+3. Word document generation with template support
+4. RESTful API design
+5. Responsive Material-UI interface
+
+## Development Workflow
+1. Frontend runs on port 3000
+2. Backend API runs on port 5001
+3. Use environment variables for API URLs
+4. Test Word document generation with actual templates
+
+## Common Tasks
+
+### Adding a New Field
+1. Update TypeScript interface in `frontend/src/types/Agreement.ts`
+2. Add form field in `frontend/src/pages/AgreementForm.tsx`
+3. Update SQLAlchemy model in `backend/models.py`
+4. Modify document generation in `backend/services/document_generator.py`
+
+### Deploying to Netlify
+1. Push to GitHub
+2. Connect repository to Netlify
+3. Set build command: `cd frontend && npm run build`
+4. Set publish directory: `frontend/build`
+5. Add environment variable: `REACT_APP_API_URL`
+
+### Template Customization
+- Templates use python-docx-template syntax
+- Place .docx files in `backend/templates/`
+- Use `{{ variable }}` for replacements
+- Preserve formatting from source template
+
+## API Endpoints
+- GET /api/agreements - List all agreements
+- POST /api/agreements - Create new agreement
+- GET /api/agreements/:id - Get single agreement
+- PUT /api/agreements/:id - Update agreement
+- POST /api/generate-doc/:id - Generate Word document
+- GET /api/templates - List available templates
+
+## Security Considerations
+- CORS is configured for development
+- Update CORS settings for production
+- Use environment variables for sensitive data
+- Validate all user inputs
+- Sanitize data before document generation
+
+## Performance Tips
+- Implement pagination for agreement lists
+- Cache template files
+- Use React.memo for expensive components
+- Optimize bundle size with code splitting
+
+## Testing Strategy
+- Unit tests for document generation logic
+- Integration tests for API endpoints
+- Component tests for critical UI flows
+- End-to-end tests for document export
+
+## Common Issues and Solutions
+- CORS errors: Check backend CORS configuration
+- Module not found: Verify all dependencies installed
+- Template errors: Ensure valid .docx format
+- Database issues: Check migrations and schema
